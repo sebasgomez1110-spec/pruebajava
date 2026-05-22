@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Competicion')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-danger text-white">
+            <h4>Registrar Competición</h4>
+        </div>
+
+        <div class="card-body">
+            <form th:action="@{/competiciones/guardar}" th:object="${competicion}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label>Nombre</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label>Monto Premio</label>
+                        <input type="number" th:field="*{montoPremio}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label>Fecha Inicio</label>
+                        <input type="date" th:field="*{fechaInicio}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label>Fecha Fin</label>
+                        <input type="date" th:field="*{fechaFin}" class="form-control" required>
+                    </div>
+                </div>
+
+                <button class="btn btn-danger">Guardar</button>
+                <a href="/competiciones/listar" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>

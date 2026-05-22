@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Lista Jugadores')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-warning text-dark d-flex justify-content-between">
+            <h4>Lista de Jugadores</h4>
+            <a href="/jugadores/nuevo" class="btn btn-dark">+ Nuevo</a>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Número</th>
+                    <th>Posición</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="j : ${jugadores}">
+                    <td th:text="${j.id}"></td>
+                    <td th:text="${j.nombre}"></td>
+                    <td th:text="${j.apellido}"></td>
+                    <td th:text="${j.numero}"></td>
+                    <td th:text="${j.posicion}"></td>
+                    <td>
+                        <a th:href="@{/jugadores/editar/{id}(id=${j.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/jugadores/eliminar/{id}(id=${j.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>

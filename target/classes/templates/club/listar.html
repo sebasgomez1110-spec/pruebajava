@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Lista Clubes')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+            <h4>Lista de Clubes</h4>
+            <a href="/clubes/nuevo" class="btn btn-light">+ Nuevo Club</a>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Club</th>
+                    <th>Ciudad</th>
+                    <th>Año</th>
+                    <th>Entrenador</th>
+                    <th>Asociación</th>
+                    <th>Jugadores</th>
+                    <th>Competiciones</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="c : ${clubes}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.nombre}"></td>
+                    <td th:text="${c.ciudad}"></td>
+                    <td th:text="${c.anioFundacion}"></td>
+
+                    <td th:text="${c.entrenador != null ? c.entrenador.nombre + ' ' + c.entrenador.apellido : 'Sin entrenador'}"></td>
+
+                    <td th:text="${c.asociacion != null ? c.asociacion.nombre : 'Sin asociación'}"></td>
+
+                    <td>
+                        <span th:each="j : ${c.jugadores}" class="badge bg-warning text-dark me-1"
+                              th:text="${j.nombre + ' ' + j.apellido}">
+                        </span>
+                    </td>
+
+                    <td>
+                        <span th:each="com : ${c.competiciones}" class="badge bg-danger me-1"
+                              th:text="${com.nombre}">
+                        </span>
+                    </td>
+
+                    <td>
+                        <a th:href="@{/clubes/editar/{id}(id=${c.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/clubes/eliminar/{id}(id=${c.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>

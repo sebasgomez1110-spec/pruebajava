@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Entrenador')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-success text-white">
+            <h4>Registrar Entrenador</h4>
+        </div>
+
+        <div class="card-body">
+            <form th:action="@{/entrenadores/guardar}" th:object="${entrenador}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Nombre</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Apellido</label>
+                        <input type="text" th:field="*{apellido}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Edad</label>
+                        <input type="number" th:field="*{edad}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label>Nacionalidad</label>
+                        <input type="text" th:field="*{nacionalidad}" class="form-control" required>
+                    </div>
+                </div>
+
+                <button class="btn btn-success">Guardar</button>
+                <a href="/entrenadores/listar" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>

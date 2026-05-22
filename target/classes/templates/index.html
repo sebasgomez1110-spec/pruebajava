@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Inicio')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-5">
+
+    <div class="p-5 text-white rounded-4 shadow" style="background: linear-gradient(135deg, #1d3557, #457b9d);">
+        <h1 class="fw-bold">Sistema de Gestión Deportiva</h1>
+        <p class="lead">Proyecto Spring Boot con JPA, Thymeleaf, Bootstrap y MySQL.</p>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h4>Clubes</h4>
+                    <a href="/clubes/listar" class="btn btn-primary">Entrar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h4>Entrenadores</h4>
+                    <a href="/entrenadores/listar" class="btn btn-success">Entrar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h4>Jugadores</h4>
+                    <a href="/jugadores/listar" class="btn btn-warning">Entrar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h4>Asociaciones</h4>
+                    <a href="/asociaciones/listar" class="btn btn-info">Entrar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow border-0 rounded-4">
+                <div class="card-body text-center">
+                    <h4>Competiciones</h4>
+                    <a href="/competiciones/listar" class="btn btn-danger">Entrar</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>
