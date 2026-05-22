@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Club')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-primary text-white">
+            <h4>Registrar Club</h4>
+        </div>
+
+        <div class="card-body">
+            <form th:action="@{/clubes/guardar}" th:object="${club}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label>Nombre</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Ciudad</label>
+                        <input type="text" th:field="*{ciudad}" class="form-control" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Año Fundación</label>
+                        <input type="number" th:field="*{anioFundacion}" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+
+                    <div class="col-md-6">
+                        <label>Entrenador (@OneToOne)</label>
+                        <select th:field="*{entrenador}" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option th:each="e : ${entrenadores}"
+                                    th:value="${e.id}"
+                                    th:text="${e.nombre + ' ' + e.apellido}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Asociación (@ManyToOne)</label>
+                        <select th:field="*{asociacion}" class="form-select" required>
+                            <option value="">Seleccione...</option>
+                            <option th:each="a : ${asociaciones}"
+                                    th:value="${a.id}"
+                                    th:text="${a.nombre}">
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label>Jugadores (@OneToMany)</label>
+                    <select th:field="*{jugadores}" class="form-select" multiple>
+                        <option th:each="j : ${jugadores}"
+                                th:value="${j.id}"
+                                th:text="${j.nombre + ' ' + j.apellido + ' - ' + j.posicion}">
+                        </option>
+                    </select>
+                    <small class="text-muted">Mantén presionada la tecla Ctrl para seleccionar varios.</small>
+                </div>
+
+                <div class="mb-3">
+                    <label>Competiciones (@ManyToMany)</label>
+                    <select th:field="*{competiciones}" class="form-select" multiple>
+                        <option th:each="c : ${competiciones}"
+                                th:value="${c.id}"
+                                th:text="${c.nombre}">
+                        </option>
+                    </select>
+                    <small class="text-muted">Mantén presionada la tecla Ctrl para seleccionar varias.</small>
+                </div>
+
+                <button class="btn btn-primary">Guardar</button>
+                <a href="/clubes/listar" class="btn btn-secondary">Cancelar</a>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>

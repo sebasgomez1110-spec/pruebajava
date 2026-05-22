@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Lista Competiciones')}"></head>
+
+<body class="bg-light">
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card shadow border-0 rounded-4">
+        <div class="card-header bg-danger text-white d-flex justify-content-between">
+            <h4>Lista de Competiciones</h4>
+            <a href="/competiciones/nuevo" class="btn btn-light">+ Nueva</a>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover table-bordered">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Premio</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="c : ${competiciones}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.nombre}"></td>
+                    <td th:text="${c.montoPremio}"></td>
+                    <td th:text="${c.fechaInicio}"></td>
+                    <td th:text="${c.fechaFin}"></td>
+                    <td>
+                        <a th:href="@{/competiciones/editar/{id}(id=${c.id})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/competiciones/eliminar/{id}(id=${c.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{layout :: footer}"></div>
+
+</body>
+</html>
